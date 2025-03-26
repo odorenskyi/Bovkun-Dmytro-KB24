@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1742307794 source:d:\lab8\prj\testdriver\main.cpp
-	<iostream>
-	<clocale>
-	"libModulesBovkun.h"
-
-1742303322 d:\lab8\prj\testdriver\libmodulesbovkun.h
-
