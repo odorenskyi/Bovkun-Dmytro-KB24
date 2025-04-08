@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1744141254 source:d:\lab 9\prj\modulesbovkun\main.cpp
+	"D:\lab 9\prj\libModulesBovkun.h"
+	<cmath>
+	<string>
+	<bitset>
+	<algorithm>
+	<vector>
+	<map>
+	<stdexcept>
+	<iostream>
+
+1744139937 d:\lab 9\prj\libmodulesbovkun.h
+	<vector>
+	<stdexcept>
+	<map>
+
