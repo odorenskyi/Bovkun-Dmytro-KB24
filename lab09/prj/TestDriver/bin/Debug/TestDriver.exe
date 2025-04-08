@@ -1,0 +1,71 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <stdexcept>
+#include <bitset>
+#include <map>
+#include <cmath>
+#include <algorithm>
+#include "libModulesBovkun.h"  // Підключаємо наш заголовочний файл
+
+// Використовуємо лише необхідні імена з простору Bovkun
+using Bovkun::SalaryResult;
+using Bovkun::SizeResult;
+using Bovkun::calculateSalary;
+using Bovkun::convertSockSize;
+using Bovkun::analyzeBits;
+
+// Функція для логування тестів
+void logTest(const std::string& testName, const std::string& input, 
+             const std::string& result, bool passed) 
+{
+    std::cout << "=== Тест: " << testName << " ===\n"
+              << "Вхідні дані: " << input << "\n"
+              << "Результат: " << result << "\n"
+              << "Статус: " << (passed ? "PASSED" : "FAILED") << "\n\n";
+}
+
+int main() 
+{
+    // Тестування задачі 9.1
+    try {
+        std::vector<int> hours = {8, 8, 8, 8, 8};
+        SalaryResult result = calculateSalary(hours);
+        logTest("Зарплата (без премій)",
+                "[8, 8, 8, 8, 8]",
+                "Total: " + std::to_string(result.totalSalary) + 
+                ", Taxes: " + std::to_string(result.taxes) +
+                ", Net: " + std::to_string(result.netSalary),
+                (std::abs(result.totalSalary - 1600.0) < 0.01 && 
+                 std::abs(result.taxes - 297.6) < 0.01));
+    } 
+    catch (const std::exception& e) {
+        logTest("Зарплата (без премій)", "Exception", e.what(), false);
+    }
+
+    // Тестування задачі 9.2
+    try {
+        SizeResult result = convertSockSize(27);
+        logTest("Конвертація розмірів (UA=27)",
+                "27",
+                "ЄС: " + result.euSize + ", США: " + std::to_string(result.usSize),
+                (result.euSize == "41/42" && result.usSize == 10));
+    } 
+    catch (const std::exception& e) {
+        logTest("Конвертація розмірів (UA=27)", "Exception", e.what(), false);
+    }
+
+    // Тестування задачі 9.3
+    try {
+        int result = analyzeBits(128);
+        logTest("Аналіз бітів (N=128)",
+                "128",
+                "Кількість нулів: " + std::to_string(result),
+                (result == 7));
+    } 
+    catch (const std::exception& e) {
+        logTest("Аналіз бітів (N=128)", "Exception", e.what(), false);
+    }
+
+    return 0;
+}
