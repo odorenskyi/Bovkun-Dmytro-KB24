@@ -1,0 +1,48 @@
+# depslib dependency file v1.0
+1744751664 source:d:\lab10\prj\bovkunmodules\bovkunmodules.cpp
+	"BovkunModules.h"
+	<fstream>
+	<ctime>
+	<bitset>
+	<algorithm>
+	<sstream>
+	<iomanip>
+	<cctype>
+	<cmath>
+	<vector>
+	<locale>
+	<clocale>
+	<limits>
+	<windows.h>
+
+1744744502 d:\lab10\prj\bovkunmodules\bovkunmodules.h
+	<string>
+	<fstream>
+	<ctime>
+	<bitset>
+	<vector>
+	<algorithm>
+	<sstream>
+	<iomanip>
+
+1744746041 source:d:\lab10\prj\testdriver\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<limits>
+	<cmath>
+	<cfloat>
+	<algorithm>
+	"BovkunModules.h"
+
+1744743402 d:\lab10\prj\bovkunmodules.h
+	<string>
+	<fstream>
+	<ctime>
+	<bitset>
+	<vector>
+	<algorithm>
+	<sstream>
+	<iomanip>
+

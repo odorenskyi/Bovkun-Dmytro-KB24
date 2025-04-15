@@ -1,0 +1,90 @@
+#include "BovkunModules.h"
+#include <cmath>
+
+namespace BovkunModules {
+    // Оновлена авторська інформація
+    const std::string AUTHOR_INFO = "Розробник: Дмитро Бовкун\n"
+                                  "Установа: ЦНТУ\n"
+                                  "Місто: Кропивницький\n"
+                                  "Країна: Україна\n"
+                                  "Рік розробки: 2025\n";
+
+    void processTask10_1(const std::string& inputFile, const std::string& outputFile) {
+        std::ifstream in(inputFile);
+        if (!in.is_open()) throw std::runtime_error("Помилка відкриття файлу: " + inputFile);
+
+        std::ofstream out(outputFile, std::ios::trunc);
+        if (!out.is_open()) {
+            in.close();
+            throw std::runtime_error("Помилка створення файлу: " + outputFile);
+        }
+
+        std::string content((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+        in.close();
+
+        out << AUTHOR_INFO << "\n";
+        out << "Кількість абзаців: " << countParagraphs(content) << "\n";
+
+        out << "Результати пошуку слів:\n"
+            << "- Україна: " << (containsWord(content, "Україна") ? "так" : "ні") << "\n"
+            << "- Університет: " << (containsWord(content, "університет") ? "так" : "ні") << "\n"
+            << "- Блокнот: " << (containsWord(content, "блокнот") ? "так" : "ні") << "\n";
+
+        out.close();
+    }
+
+    void processTask10_2(const std::string& inputFile) {
+        std::fstream file(inputFile, std::ios::in | std::ios::out | std::ios::app);
+        if (!file.is_open()) throw std::runtime_error("Помилка відкриття файлу: " + inputFile);
+
+        file.seekg(0);
+        std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+
+        file << "\n\nКрапок у тексті: " << countDots(content)
+             << "\nДата дозапису: " << getCurrentDateTime();
+
+        file.close();
+    }
+
+    void processTask10_3(const std::string& outputFile, double x, double y, double z, unsigned int b) {
+        std::ofstream out(outputFile, std::ios::app);
+        if (!out.is_open()) throw std::runtime_error("Помилка відкриття файлу: " + outputFile);
+
+        out << "\n\nРезультат s_calculation: " << std::fixed << std::setprecision(2)
+            << s_calculation(x, y, z) << "\n"
+            << "Число " << b << " у двійковому коді: " << toBinaryString(b);
+
+        out.close();
+    }
+
+    // Реалізації допоміжних функцій
+    std::string getCurrentDateTime() {
+        time_t now = time(nullptr);
+        char buf[80];
+        strftime(buf, sizeof(buf), "%d.%m.%Y %H:%M:%S", localtime(&now));
+        return buf;
+    }
+
+    std::string toBinaryString(unsigned int n) {
+        return std::bitset<32>(n).to_string();
+    }
+
+    double s_calculation(double x, double y, double z) {
+        return sqrt(x*x + y*y + z*z) + sin(x*y) + cos(y*z);
+    }
+
+    bool containsWord(const std::string& text, const std::string& word) {
+        std::string lowerText = text;
+        std::transform(lowerText.begin(), lowerText.end(), lowerText.begin(), ::tolower);
+        return lowerText.find(word) != std::string::npos;
+    }
+
+    int countParagraphs(const std::string& content) {
+        if (content.empty()) return 0;
+        return std::count(content.begin(), content.end(), '\n') + 1;
+    }
+
+    int countDots(const std::string& content) {
+        return std::count(content.begin(), content.end(), '.');
+    }
+}
