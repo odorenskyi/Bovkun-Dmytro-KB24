@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1729013029 source:g:\BMTP\bovkun-dmutro-kb24\lab12\prj\teacher\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<cmath>
+	"ModulesBovkun.h"
+
+1149848234 g:\BMTP\bovkun-dmutro-kb24\lab08\prj\modulesbovkun.h
+	<string>
+	<cmath>
